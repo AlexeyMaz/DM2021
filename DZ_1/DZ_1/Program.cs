@@ -55,13 +55,21 @@ namespace DZ_1
                     while (HasNextCombObj())
                     {
                         for (int i = 0; i < k; i++)
-                            writer.Write(CombObj[i]);
+                        {
+                            if (i == 0) writer.Write("[");
+                            if (i == k - 1) writer.Write(CombObj[i] + "]");
+                            else writer.Write(CombObj[i] + ", ");
+                        }
 
                         writer.WriteLine();
                         NextCombObj();
                     }
                     for (int i = 0; i < k; i++)
-                        writer.Write(CombObj[i]);
+                    {
+                        if (i == 0) writer.Write("[");
+                        if (i == k - 1) writer.Write(CombObj[i] + "]");
+                        else writer.Write(CombObj[i] + ", ");
+                    }
                 }
             }
             private bool HasNextCombObj()//есть ли следующий объект
@@ -107,13 +115,21 @@ namespace DZ_1
                     writer.WriteLine("}"); writer.WriteLine();
 
                     for (int i = 0; i < n; i++)
-                        writer.Write(CombObj[i]);
+                    {
+                        if (i == 0) writer.Write("[");
+                        if (i == n - 1) writer.Write(CombObj[i] + "]");
+                        else writer.Write(CombObj[i] + ", ");
+                    }
                     writer.WriteLine();
 
                     while (NextCombObj())
                     {
                         for (int i = 0; i < n; i++)
-                            writer.Write(CombObj[i]);
+                        {
+                            if (i == 0) writer.Write("[");
+                            if (i == n - 1) writer.Write(CombObj[i] + "]");
+                            else writer.Write(CombObj[i] + ", ");
+                        }
                         writer.WriteLine();
                     }
                 }
@@ -134,6 +150,72 @@ namespace DZ_1
                 while (CombObj[j] < CombObj[i])
                     j++;
                 Swap(j, i);
+
+                return true;//генерируем дальше
+            }
+        }
+        public class K_Variations//размещения по k
+        {
+            public K_Variations(int k)
+            {
+                CombObj = new char[n];
+                CombObjects.k = k;
+            }
+            public void Process()
+            {
+                for (int i = 0; i < n; i++)
+                    CombObj[i] = alphabet[i];
+
+                using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\K_Variations.txt"))
+                {
+                    writer.Write("n = " + n + ", k = " + k + ", alphabet = {");
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (i == n - 1) writer.Write(alphabet[i]);
+                        else writer.Write(alphabet[i] + ", ");
+                    }
+                    writer.WriteLine("}"); writer.WriteLine();
+
+                    for (int i = 0; i < k; i++)
+                    {
+                        if (i == 0) writer.Write("[");
+                        if (i == k - 1) writer.Write(CombObj[i] + "]");
+                        else writer.Write(CombObj[i] + ", ");
+                    }
+                    writer.WriteLine();
+
+                    while (NextCombObj())
+                    {
+                        for (int i = 0; i < k; i++)
+                        {
+                            if (i == 0) writer.Write("[");
+                            if (i == k - 1) writer.Write(CombObj[i] + "]");
+                            else writer.Write(CombObj[i] + ", ");
+                        }
+                        writer.WriteLine();
+                    }
+                }
+            }
+            bool NextCombObj()
+            {
+                int j;
+                do //повторяем пока не будет найдено следующее размещение
+                {
+                    j = n - 2;
+                    while (j != -1 && CombObj[j] >= CombObj[j + 1])
+                        j--;
+
+                    if (j == -1)
+                        return false;//все размещения сгенерированы
+
+                    int k = n - 1;
+                    while (CombObj[j] >= CombObj[k]) k--;
+                    Swap(j, k);
+
+                    int l = j + 1, r = n - 1;
+                    while (l < r)
+                        Swap(l++, r--);
+                } while (j > k - 1);
 
                 return true;//генерируем дальше
             }
@@ -167,7 +249,11 @@ namespace DZ_1
                     Console.WriteLine("Задача выполнена");
                     break;
                 case (3)://размещения по k
-                    Console.WriteLine("Задача находится в разработке");
+                    Console.Write("Введите длину слова: ");
+                    k = int.Parse(Console.ReadLine());
+                    CombObjects.K_Variations n3 = new CombObjects.K_Variations(k);
+                    n3.Process();
+                    Console.WriteLine("Задача выполнена");
                     break;
                 case (4)://подмножества
                     Console.WriteLine("Задача находится в разработке");

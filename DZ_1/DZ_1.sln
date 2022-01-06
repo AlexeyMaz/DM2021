@@ -5,9 +5,10 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DZ_1", "DZ_1\DZ_1.csproj", "{A2297265-85C0-481B-8389-FC5F7F08CCBA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFC2D935-D9B3-44FF-9E30-84B51B469266}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2966C2C3-5913-4D60-B0C5-D053D8D44899}"
 	ProjectSection(SolutionItems) = preProject
-		1.1.txt = 1.1.txt
+		Permutations.txt = Permutations.txt
+		Variations_with_Repetitions.txt = Variations_with_Repetitions.txt
 	EndProjectSection
 EndProject
 Global

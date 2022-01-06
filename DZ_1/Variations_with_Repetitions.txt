@@ -1,4 +1,5 @@
-n = 6, k = 4, alphabet = { a b c d e f }
+n = 6, k = 4, alphabet = {a, b, c, d, e, f}
+
 aaaa
 aaab
 aaac

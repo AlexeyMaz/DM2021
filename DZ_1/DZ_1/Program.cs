@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace DZ_1
 {
@@ -220,6 +218,125 @@ namespace DZ_1
                 return true;//генерируем дальше
             }
         }
+        public class K_Combinations//сочетания по k
+        {
+            public K_Combinations(int k)
+            {
+                CombObj = new char[k];
+                CombObjects.k = k;
+            }
+            public virtual void Process()
+            {
+                for (int i = 0; i < k; i++)
+                    CombObj[i] = alphabet[i];
+
+                using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\K_Combinations.txt"))
+                {
+                    writer.Write("n = " + n + ", k = " + k + ", alphabet = {");
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (i == n - 1) writer.Write(alphabet[i]);
+                        else writer.Write(alphabet[i] + ", ");
+                    }
+                    writer.WriteLine("}"); writer.WriteLine();
+
+                    for (int i = 0; i < k; i++)
+                    {
+                        if (i == 0) writer.Write("[");
+                        if (i == k - 1) writer.Write(CombObj[i] + "]");
+                        else writer.Write(CombObj[i] + ", ");
+                    }
+                    writer.WriteLine();
+
+                    while (NextCombObj(k))
+                    {
+                        for (int i = 0; i < k; i++)
+                        {
+                            if (i == 0) writer.Write("[");
+                            if (i == k - 1) writer.Write(CombObj[i] + "]");
+                            else writer.Write(CombObj[i] + ", ");
+                        }
+                        writer.WriteLine();
+                    }
+                }
+            }
+            protected bool NextCombObj(int p)//генерация следующего объекта
+            {
+                if ((int)CombObj[0] >= 48 && (int)CombObj[0] <= 57)
+                {
+                    for (int i = p - 1; i > -1; i--)
+                        if (CombObj[i] - 48 < n - p + i + 1)
+                        {
+                            CombObj[i]++;
+                            for (int j = i + 1; j < p; ++j)
+                            {
+                                CombObj[j] = CombObj[j - 1];
+                                CombObj[j]++;
+                            }
+                            return true;//генерируем дальше
+                        }
+                    return false;//все сочетания сгенерированы
+                }
+                else if ((int)CombObj[0] >= 97)
+                {
+                    for (int i = p - 1; i > -1; i--)
+                        if (CombObj[i] - 97 < n - p + i)
+                        {
+                            CombObj[i]++;
+                            for (int j = i + 1; j < p; ++j)
+                            {
+                                CombObj[j] = CombObj[j - 1];
+                                CombObj[j]++;
+                            }
+                            return true;//генерируем дальше
+                        }
+                    return false;//все сочетания сгенерированы
+                }
+                return false;
+            }
+        }
+        public class Subsets/*подмножества*/ : K_Combinations
+        {
+            public Subsets() : base (n)
+            { }
+            public override void Process()
+            {
+                using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\Subsets.txt"))
+                {
+                    writer.Write("n = " + n + ", alphabet = {");
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (i == n - 1) writer.Write(alphabet[i]);
+                        else writer.Write(alphabet[i] + ", ");
+                    }
+                    writer.WriteLine("}"); writer.WriteLine();
+                    writer.Write("{ }");
+
+                    for (int c = 0; c < n + 1; c++)
+                    {
+                        for (int i = 0; i < c; i++)
+                        {
+                            CombObj[i] = alphabet[i];
+                            if (i == 0) writer.Write("{");
+                            if (i == c - 1) writer.Write(CombObj[i] + "}");
+                            else writer.Write(CombObj[i] + ", ");
+                        }
+                        writer.WriteLine();
+
+                        while (NextCombObj(c))
+                        {
+                            for (int i = 0; i < c; i++)
+                            {
+                                if (i == 0) writer.Write("{");
+                                if (i == c - 1) writer.Write(CombObj[i] + "}");
+                                else writer.Write(CombObj[i] + ", ");
+                            }
+                            writer.WriteLine();
+                        }
+                    }
+                }
+            }
+        }
 
     }
 
@@ -256,10 +373,16 @@ namespace DZ_1
                     Console.WriteLine("Задача выполнена");
                     break;
                 case (4)://подмножества
-                    Console.WriteLine("Задача находится в разработке");
+                    CombObjects.Subsets n4 = new CombObjects.Subsets();
+                    n4.Process();
+                    Console.WriteLine("Задача выполнена");
                     break;
                 case (5)://сочетания по k
-                    Console.WriteLine("Задача находится в разработке");
+                    Console.Write("Введите длину слова: ");
+                    k = int.Parse(Console.ReadLine());
+                    CombObjects.K_Combinations n5 = new CombObjects.K_Combinations(k);
+                    n5.Process();
+                    Console.WriteLine("Задача выполнена");
                     break;
                 case (6)://сочетания с повторениями
                     Console.WriteLine("Задача находится в разработке");

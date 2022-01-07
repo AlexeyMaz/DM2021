@@ -28,6 +28,29 @@ namespace DZ_1
             CombObj[i] = CombObj[j];
             CombObj[j] = s;
         }
+        static void PrintHeader(StreamWriter writer, bool inc_k)
+        {
+            if (inc_k)
+                writer.Write("n = " + n + ", k = " + k + ", alphabet = {");
+            else
+                writer.Write("n = " + n + ", alphabet = {");
+            for (int i = 0; i < n; i++)
+            {
+                if (i == n - 1) writer.Write(alphabet[i]);
+                else writer.Write(alphabet[i] + ", ");
+            }
+            writer.WriteLine("}"); writer.WriteLine();
+        }
+        static void PrintCombObject(StreamWriter writer, int kk)
+        {
+            for (int i = 0; i < kk; i++)
+            {
+                if (i == 0) writer.Write("[");
+                if (i == kk - 1) writer.Write(CombObj[i] + "]");
+                else writer.Write(CombObj[i] + ", ");
+            }
+            writer.WriteLine();
+        }
         public class Variations_with_Repetitions//размещения с повторениями
         {
             public Variations_with_Repetitions(int k)
@@ -42,32 +65,13 @@ namespace DZ_1
 
                 using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\Variations_with_Repetitions.txt"))
                 {
-                    writer.Write("n = " + n + ", k = " + k + ", alphabet = {");
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (i == n - 1) writer.Write(alphabet[i]);
-                        else writer.Write(alphabet[i] + ", ");
-                    }
-                    writer.WriteLine("}"); writer.WriteLine();
-
+                    PrintHeader(writer, true);
                     while (HasNextCombObj())
                     {
-                        for (int i = 0; i < k; i++)
-                        {
-                            if (i == 0) writer.Write("[");
-                            if (i == k - 1) writer.Write(CombObj[i] + "]");
-                            else writer.Write(CombObj[i] + ", ");
-                        }
-
-                        writer.WriteLine();
+                        PrintCombObject(writer, k);
                         NextCombObj();
                     }
-                    for (int i = 0; i < k; i++)
-                    {
-                        if (i == 0) writer.Write("[");
-                        if (i == k - 1) writer.Write(CombObj[i] + "]");
-                        else writer.Write(CombObj[i] + ", ");
-                    }
+                    PrintCombObject(writer, k);
                 }
             }
             private bool HasNextCombObj()//есть ли следующий объект
@@ -77,7 +81,7 @@ namespace DZ_1
                     if (CombObj[i] == alphabet[n - 1]) kol++;
                 return (kol != k);
             }
-            public void NextCombObj()//генерация следующего объекта
+            private void NextCombObj()//генерация следующего объекта
             {
                 for (int i = k - 1; i > -1; i--)
                 {
@@ -104,35 +108,14 @@ namespace DZ_1
 
                 using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\Permutations.txt"))
                 {
-                    writer.Write("n = " + n + ", alphabet = {");
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (i == n - 1) writer.Write(alphabet[i]);
-                        else writer.Write(alphabet[i] + ", ");
-                    }
-                    writer.WriteLine("}"); writer.WriteLine();
-
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (i == 0) writer.Write("[");
-                        if (i == n - 1) writer.Write(CombObj[i] + "]");
-                        else writer.Write(CombObj[i] + ", ");
-                    }
-                    writer.WriteLine();
+                    PrintHeader(writer, false);
+                    PrintCombObject(writer, n);
 
                     while (NextCombObj())
-                    {
-                        for (int i = 0; i < n; i++)
-                        {
-                            if (i == 0) writer.Write("[");
-                            if (i == n - 1) writer.Write(CombObj[i] + "]");
-                            else writer.Write(CombObj[i] + ", ");
-                        }
-                        writer.WriteLine();
-                    }
+                        PrintCombObject(writer, n);
                 }
             }
-            bool NextCombObj()
+            private bool NextCombObj()
             {
                 int i = n - 2;
                 while (i > -1 && CombObj[i] > CombObj[i + 1])
@@ -166,35 +149,14 @@ namespace DZ_1
 
                 using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\K_Variations.txt"))
                 {
-                    writer.Write("n = " + n + ", k = " + k + ", alphabet = {");
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (i == n - 1) writer.Write(alphabet[i]);
-                        else writer.Write(alphabet[i] + ", ");
-                    }
-                    writer.WriteLine("}"); writer.WriteLine();
-
-                    for (int i = 0; i < k; i++)
-                    {
-                        if (i == 0) writer.Write("[");
-                        if (i == k - 1) writer.Write(CombObj[i] + "]");
-                        else writer.Write(CombObj[i] + ", ");
-                    }
-                    writer.WriteLine();
+                    PrintHeader(writer, true);
+                    PrintCombObject(writer, k);
 
                     while (NextCombObj())
-                    {
-                        for (int i = 0; i < k; i++)
-                        {
-                            if (i == 0) writer.Write("[");
-                            if (i == k - 1) writer.Write(CombObj[i] + "]");
-                            else writer.Write(CombObj[i] + ", ");
-                        }
-                        writer.WriteLine();
-                    }
+                        PrintCombObject(writer, k);
                 }
             }
-            bool NextCombObj()
+            private bool NextCombObj()
             {
                 int j;
                 do //повторяем пока не будет найдено следующее размещение
@@ -232,32 +194,11 @@ namespace DZ_1
 
                 using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\K_Combinations.txt"))
                 {
-                    writer.Write("n = " + n + ", k = " + k + ", alphabet = {");
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (i == n - 1) writer.Write(alphabet[i]);
-                        else writer.Write(alphabet[i] + ", ");
-                    }
-                    writer.WriteLine("}"); writer.WriteLine();
-
-                    for (int i = 0; i < k; i++)
-                    {
-                        if (i == 0) writer.Write("[");
-                        if (i == k - 1) writer.Write(CombObj[i] + "]");
-                        else writer.Write(CombObj[i] + ", ");
-                    }
-                    writer.WriteLine();
+                    PrintHeader(writer, true);
+                    PrintCombObject(writer, k);
 
                     while (NextCombObj(k))
-                    {
-                        for (int i = 0; i < k; i++)
-                        {
-                            if (i == 0) writer.Write("[");
-                            if (i == k - 1) writer.Write(CombObj[i] + "]");
-                            else writer.Write(CombObj[i] + ", ");
-                        }
-                        writer.WriteLine();
-                    }
+                        PrintCombObject(writer, k);
                 }
             }
             protected bool NextCombObj(int p)//генерация следующего объекта
@@ -297,47 +238,79 @@ namespace DZ_1
         }
         public class Subsets/*подмножества*/ : K_Combinations
         {
-            public Subsets() : base (n)
+            public Subsets() : base(n)
             { }
             public override void Process()
             {
                 using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\Subsets.txt"))
                 {
-                    writer.Write("n = " + n + ", alphabet = {");
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (i == n - 1) writer.Write(alphabet[i]);
-                        else writer.Write(alphabet[i] + ", ");
-                    }
-                    writer.WriteLine("}"); writer.WriteLine();
-                    writer.Write("{ }");
+                    PrintHeader(writer, false);
+                    writer.Write("[ ]");
 
                     for (int c = 0; c < n + 1; c++)
                     {
                         for (int i = 0; i < c; i++)
-                        {
                             CombObj[i] = alphabet[i];
-                            if (i == 0) writer.Write("{");
-                            if (i == c - 1) writer.Write(CombObj[i] + "}");
-                            else writer.Write(CombObj[i] + ", ");
-                        }
-                        writer.WriteLine();
+                        PrintCombObject(writer, c);
 
                         while (NextCombObj(c))
-                        {
-                            for (int i = 0; i < c; i++)
-                            {
-                                if (i == 0) writer.Write("{");
-                                if (i == c - 1) writer.Write(CombObj[i] + "}");
-                                else writer.Write(CombObj[i] + ", ");
-                            }
-                            writer.WriteLine();
-                        }
+                            PrintCombObject(writer, c);
                     }
                 }
             }
         }
+        public class Combinations_with_Repetitions//сочетания с повторенями
+        {
+            public Combinations_with_Repetitions(int k)
+            {
+                CombObj = new char[k];
+                CombObjects.k = k;
+            }
+            public virtual void Process()
+            {
+                for (int i = 0; i < k; i++)
+                    CombObj[i] = alphabet[0];
 
+                using (StreamWriter writer = new StreamWriter(@"C:\Users\almaz\source\repos\DM2021\DZ_1\Combinations_with_Repetitions.txt"))
+                {
+                    PrintHeader(writer, true);
+                    PrintCombObject(writer, k);
+
+                    while (NextCombObj())
+                        PrintCombObject(writer, k);
+                }
+            }
+            private bool NextCombObj()//генерация следующего объекта
+            {
+                if ((int)CombObj[0] >= 48 && (int)CombObj[0] <= 57)
+                {
+                    int i = k - 1;
+                    while (i > -1 && CombObj[i] - 48 >= n) i--;
+
+                    if (i < 0) return false;//все сочетания с повторениями сгенерированы
+                    CombObj[i]++;
+
+                    for (int j = i + 1; j < k; j++)
+                        CombObj[j] = CombObj[i];
+
+                    return true;//генерируем дальше
+                }
+                else if ((int)CombObj[0] >= 97)
+                {
+                    int i = k - 1;
+                    while (i > -1 && CombObj[i] - 97 > n - 2) i--;
+
+                    if (i < 0) return false;//все сочетания с повторениями сгенерированы
+                    CombObj[i]++;
+
+                    for (int j = i + 1; j < k; j++)
+                        CombObj[j] = CombObj[i];
+
+                    return true;//генерируем дальше
+                }
+                return false;
+            }
+        }
     }
 
     class Program
@@ -385,7 +358,11 @@ namespace DZ_1
                     Console.WriteLine("Задача выполнена");
                     break;
                 case (6)://сочетания с повторениями
-                    Console.WriteLine("Задача находится в разработке");
+                    Console.Write("Введите длину слова: ");
+                    k = int.Parse(Console.ReadLine());
+                    CombObjects.Combinations_with_Repetitions n6 = new CombObjects.Combinations_with_Repetitions(k);
+                    n6.Process();
+                    Console.WriteLine("Задача выполнена");
                     break;
             }
         }

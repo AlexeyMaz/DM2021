@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DZ_1", "DZ_1\DZ_1.csproj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2966C2C3-5913-4D60-B0C5-D053D8D44899}"
 	ProjectSection(SolutionItems) = preProject
+		Combinations_with_Repetitions.txt = Combinations_with_Repetitions.txt
 		K_Combinations.txt = K_Combinations.txt
 		K_Variations.txt = K_Variations.txt
 		Permutations.txt = Permutations.txt

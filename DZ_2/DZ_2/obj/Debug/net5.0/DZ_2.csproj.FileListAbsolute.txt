@@ -1,0 +1,16 @@
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\DZ_2.exe
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\DZ_2.deps.json
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\DZ_2.runtimeconfig.json
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\DZ_2.runtimeconfig.dev.json
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\DZ_2.dll
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\ref\DZ_2.dll
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\bin\Debug\net5.0\DZ_2.pdb
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.csproj.AssemblyReference.cache
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.AssemblyInfoInputs.cache
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.AssemblyInfo.cs
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.csproj.CoreCompileInputs.cache
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.dll
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\ref\DZ_2.dll
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.pdb
+C:\Users\almaz\source\repos\DM2021\DZ_2\DZ_2\obj\Debug\net5.0\DZ_2.genruntimeconfig.cache

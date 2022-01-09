@@ -317,7 +317,7 @@ namespace DZ_1
     {
         static void Main(string[] args)
         {
-            CombObjects CombObj = new CombObjects();
+            CombObjects CombObj = new();
 
             Console.Write("Введите номер задачи, которую необходимо выполнить; введите 0 для выхода: ");
             int TaskNum = int.Parse(Console.ReadLine());

@@ -7,8 +7,8 @@ namespace DZ_8
     {
         static void Main(string[] args)
         {
-            string graph1 = "Graph1.txt";
-            string graph2 = "Graph2.txt";
+            string graph1 = @"C:\Users\almaz\source\repos\DM2021\DZ_8\Graph1.txt";
+            string graph2 = @"C:\Users\almaz\source\repos\DM2021\DZ_8\Graph2.txt";
             string[] matr1;
             string[] matr2;
             matr1 = File.ReadAllLines(graph1);
@@ -21,10 +21,22 @@ namespace DZ_8
                     Aftomorfizm = false;
                     break;
                 }
-            if (Aftomorfizm == false)
+            if (Aftomorfizm)
                 Console.WriteLine("Преобразование является автоморфизмом.");
             else 
                 Console.WriteLine("Преобразование не является автоморфизмом.");
         }
     }
 }
+//                                          🌟
+//                                          🎄
+//                                         🎄🎄
+//                                        🎄⁣🎄🎄
+//                                       🎄🎄🎄🎄
+//                                      🎄🎄🎄🎄🎄
+//                                     🎄🎄🎄🎄🎄🎄           𝓗𝓐𝓟𝓟𝓨 𝓝𝓔𝓦 𝓨𝓔𝓐𝓡
+//                                    🎄🎄🎄🎄🎄🎄🎄
+//                                   🎄🎄🎄🎄🎄🎄🎄🎄
+//                                  🎄🎄🎄🎄🎄🎄🎄🎄🎄
+//                                 🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄
+//                                        🎁🎁🎁
